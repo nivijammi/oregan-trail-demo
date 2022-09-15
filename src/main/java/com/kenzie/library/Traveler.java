@@ -6,11 +6,11 @@ public class Traveler {
     protected int food;
     protected boolean isHealthy;
 
+
     public Traveler(){
         this.name = "";
         this.food = 1;
         this.isHealthy = true;
-
     }
 
     public Traveler(String name){
@@ -48,6 +48,7 @@ public class Traveler {
     }
 
     public void eat(){
+
         if(getFood() >= 1){
             setFood(food - 1);
         }else{
@@ -60,15 +61,11 @@ public class Traveler {
 class Doctor extends Traveler {
 
     public Doctor() {
-        this.name = "";
-        this.food = 1;
-        this.isHealthy = true;
+        super();
     }
 
     public Doctor(String name) {
         super(name);
-        this.food = 1;
-        this.isHealthy = true;
     }
 
     @Override
@@ -88,16 +85,13 @@ class Doctor extends Traveler {
 
 class Hunter extends Traveler {
     public Hunter() {
-        this.name = "";
+        super();
         this.food = 2;
-        this.isHealthy = true;
     }
 
     public Hunter(String name) {
         super(name);
         this.food = 2;
-        this.isHealthy = true;
-
     }
 
     @Override
