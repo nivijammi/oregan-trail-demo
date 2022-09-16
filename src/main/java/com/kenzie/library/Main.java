@@ -6,22 +6,23 @@ import java.util.NoSuchElementException;
 
 public class Main {
 
+    private static final int MAX_WAGON_CAPACITY = 10;//TODO : all code written in OregonTrailMyAdditions
     /*** Declare Statics and Constants Here ***/
     //static variables that will be used to track progress:
 
-    public static int daysTravelled;
-    public static int milesTravelled;
+        public static int daysTravelled;
+        public static int milesTravelled;
 
-    public static final int  TOTAL_MILES = 1600; //Total miles required to reach Oregon
-    public static final int MILES_PER_DAY = 20;//Total miles travelled per day
-    public static final  int FOOD_EXCHANGE = 2; //How much food the travelers give each other each time
-    public static final int MAX_DAYS = 100; //Maximum number of days to reach Oregon or bust
-    public static final int WAGON_SIZE = 12 ;//Total capacity -- choose either 4, 8 or 12
-    public static final int HUNT_DAYS = 4; //this represents how often the party will stop to hunt, 4 means once every 4 days
-    //The number of each type of Traveler is up to you to set. All three numbers together should total up to the value of WAGON_SIZE.
-    public static final int NUM_TRAVELERS = 5;
-    public static final int NUM_HUNTERS = 1;
-    public static final int NUM_DOCTORS = 1;
+        public static final int  TOTAL_MILES = 1600; //Total miles required to reach Oregon
+        public static final int MILES_PER_DAY = 20;//Total miles travelled per day
+        public static final  int FOOD_EXCHANGE = 2; //How much food the travelers give each other each time
+        public static final int MAX_DAYS = 100; //Maximum number of days to reach Oregon or bust
+        public static final int WAGON_SIZE = 12 ;//Total capacity -- choose either 4, 8 or 12
+        public static final int HUNT_DAYS = 4; //this represents how often the party will stop to hunt, 4 means once every 4 days
+        //The number of each type of Traveler is up to you to set. All three numbers together should total up to the value of WAGON_SIZE.
+        public static final int NUM_TRAVELERS = 5;
+        public static final int NUM_HUNTERS = 1;
+        public static final int NUM_DOCTORS = 1;
     
 
     /*** DO NOT CHANGE THE CODE BELOW THIS LINE ***/
@@ -32,6 +33,7 @@ public class Main {
 
         //This will only run through if all of the required elements for Part 2 are coded
         OregonTrailPartTwo();
+
     }
 
     //Oregon Trail Part 1 and Part 2 are coded with runtime variable and method invocation
