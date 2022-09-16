@@ -38,10 +38,6 @@ public class oregonTrailMyAdditions {
         return MILES_TRAVELED_PER_DAY;
     }
 
-    public int getTRAVEL_DAYS() {
-        return MAX_DAYS;
-    }
-
     public int getFoodStock() {
         return foodStock;
     }
@@ -119,26 +115,32 @@ public class oregonTrailMyAdditions {
             switch (sumOfDice) {
                 case IS_SICK: // sum 4: lose travel days //TODO: invoke heal
                     gameStatus = UserStatus.DELAY;
+                    System.out.println("Delayed because of sickness");
                     totalMilesTravelled = totalMilesTravelled - (MILES_TRAVELED_PER_DAY *2); //delay by 2 days
                     break;
                 case HUNT_DAY: // sum 7: //todo: invoke share food
                     gameStatus = UserStatus.DELAY;
-                    totalMilesTravelled = totalMilesTravelled + MILES_TRAVELED_PER_DAY;
+                    System.out.println(("Hunt Day! Need to gather food"));
+                    totalMilesTravelled = totalMilesTravelled - MILES_TRAVELED_PER_DAY;
                     foodStock = foodStock + foodRationPerDay;
                     break;
                 case REACHED_A_MILESTONE: // sum 8: added vigor - travelled twice & restocked
                     totalMilesTravelled = totalMilesTravelled + (MILES_TRAVELED_PER_DAY *2);
+                    System.out.println("All supplies stalked!");
                     foodStock = foodStock + foodRationPerDay * 2;
                     gameStatus = UserStatus.PLAY;
                     break;
                 case DISASTER: // lose with 11
                     gameStatus = UserStatus.LOST;
+                    System.out.println("Disaster hit!");
                     break;
                 case REACHED_SANTA_FE_TRAIL: // sum 12: win
+                    System.out.println("Finally reached Santa Fe Trail");
                     gameStatus = UserStatus.WON;
                     break;
                 default: // did not win or lose
                     gameStatus = UserStatus.PLAY; // game is not over
+                    System.out.println("And miles to go before i sleep!");
                     totalMilesTravelled = totalMilesTravelled + MILES_TRAVELED_PER_DAY;
                     milesRemainingToOregon = TOTAL_MILES - totalMilesTravelled;
                     currentPoints = currentPoints + sumOfDice; // remember the point
