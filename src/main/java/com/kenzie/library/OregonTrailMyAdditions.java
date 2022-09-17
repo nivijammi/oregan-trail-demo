@@ -2,6 +2,15 @@ package com.kenzie.library;
 
 import java.util.Random;
 
+/**
+ * In the game the sum of two random rolls of dice represents a day and Traveller is given fixed ration for the day.
+ * Every dice roll adds a fixed miles(15) and depletes the fixed ration of food(20).
+ * Few sum of dice roll can delay(4 and 7) the journey, make you complete the game(12) or
+ * can make you loose the game(11). Otherwise, you continue your journey
+ * with ups and down in your ration and travel days till you reach OREGON or
+ * collect 150 points or till food store runs out. Good luck!
+ */
+
 public class OregonTrailMyAdditions {
 
     // create random number generator for use in method rollDice
