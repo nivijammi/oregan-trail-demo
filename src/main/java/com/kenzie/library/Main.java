@@ -2,11 +2,13 @@ package com.kenzie.library;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.EnumMap;
 import java.util.NoSuchElementException;
+import java.util.Random;
+
 
 public class Main {
 
-    private static final int MAX_WAGON_CAPACITY = 10;//TODO : all code written in OregonTrailMyAdditions
     /*** Declare Statics and Constants Here ***/
     //static variables that will be used to track progress:
 
@@ -23,6 +25,64 @@ public class Main {
         public static final int NUM_TRAVELERS = 5;
         public static final int NUM_HUNTERS = 1;
         public static final int NUM_DOCTORS = 1;
+
+        /***************** Assessment - Object Oriented Design ************************/
+    private static Random randomNumbers = new Random(); //1.static variable declaration
+
+    private static void gameHunt() {
+        // Creating an EnumMap of the Size enum
+        EnumMap<Wildlife, Integer> gameHuntUnits = new EnumMap<>(Wildlife.class);
+        gameHuntUnits.put(Wildlife.BEAR, 10);
+        gameHuntUnits.put(Wildlife.BISON, 10);
+        gameHuntUnits.put(Wildlife.DEER, 5);
+        gameHuntUnits.put(Wildlife.RABBIT, 4);
+        gameHuntUnits.put(Wildlife.SQUIRREL, 2);
+        System.out.println("HuntMap: " + gameHuntUnits);
+
+        Hunter hunter = new Hunter();
+        hunt(hunter, gameHuntUnits);
+    }
+
+    public static int rollDice(){
+        int dieValue = randomNumbers.nextInt(6); // first die roll
+        return dieValue;
+    }
+
+    private static void hunt(Hunter hunter, EnumMap<Wildlife, Integer> gameHuntUnits) {
+        int huntUnits;
+        int foodStore = hunter.getFood();
+
+        switch (rollDice()) {
+            case 1:
+                huntUnits = gameHuntUnits.get(Wildlife.BEAR);
+                System.out.println("Food hunted on hunt day: " + huntUnits + " units!");
+                hunter.setFood(foodStore + huntUnits);
+                break;
+            case 2:
+                huntUnits = gameHuntUnits.get(Wildlife.BISON);
+                System.out.println("Food hunted on hunt day: " + huntUnits + " units!");
+                hunter.setFood(foodStore + huntUnits);
+                break;
+            case 3:
+                huntUnits = gameHuntUnits.get(Wildlife.DEER);
+                System.out.println("Food hunted on hunt day: " + huntUnits + " units!");
+                hunter.setFood(foodStore + huntUnits);
+                break;
+            case 4:
+                huntUnits = gameHuntUnits.get(Wildlife.RABBIT);
+                System.out.println("Food hunted on hunt day: " + huntUnits + " units!");
+                hunter.setFood(foodStore + huntUnits);
+                break;
+            case 5:
+                huntUnits  = gameHuntUnits.get(Wildlife.SQUIRREL);
+                System.out.println("Food hunted on hunt day: " + huntUnits + " units!");
+                hunter.setFood(foodStore + huntUnits);
+                break;
+            default:
+                System.out.println("No game! It was an unlucky hunt!");
+                break;
+        }
+    }
     
 
     /*** DO NOT CHANGE THE CODE BELOW THIS LINE ***/
@@ -196,7 +256,7 @@ public class Main {
             // preparing eat method in Hunter and Traveler for runtime invocation
             @SuppressWarnings("unchecked")
             Method getPassengers = Wagon.class.getMethod("getPassengers");
-            //get the passngerArray
+            //get the passengerArray
             Traveler[] passengerArray = (Traveler[]) getPassengers.invoke(wagon);
 
             for (int i = 0; i < max_days; i++) {
@@ -210,6 +270,9 @@ public class Main {
                     // For-each member in wagon: hunt
                     huntFlag = true;
                     System.out.println("Hunting Day!");
+                    /***********************************/
+                    gameHunt();
+                    /**********************************/
                     OregonTrail.goHunting(passengerArray);
                 } else {
                     huntFlag = false;

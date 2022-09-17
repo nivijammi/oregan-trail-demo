@@ -2,7 +2,7 @@ package com.kenzie.library;
 
 import java.util.Random;
 
-public class oregonTrailMyAdditions {
+public class OregonTrailMyAdditions {
 
     // create random number generator for use in method rollDice
     public final Random randomNumbers = new Random();
@@ -32,10 +32,6 @@ public class oregonTrailMyAdditions {
 
     public Random getRandomNumbers() {
         return randomNumbers;
-    }
-
-    public int getMilesTraveledPerDay() {
-        return MILES_TRAVELED_PER_DAY;
     }
 
     public int getFoodStock() {
@@ -113,12 +109,12 @@ public class oregonTrailMyAdditions {
             // determine game status and point based on the roll
 
             switch (sumOfDice) {
-                case IS_SICK: // sum 4: lose travel days //TODO: invoke heal
+                case IS_SICK: // sum 4: lose travel days
                     gameStatus = UserStatus.DELAY;
                     System.out.println("Delayed because of sickness");
                     totalMilesTravelled = totalMilesTravelled - (MILES_TRAVELED_PER_DAY *2); //delay by 2 days
                     break;
-                case HUNT_DAY: // sum 7: //todo: invoke share food
+                case HUNT_DAY: // sum 7:
                     gameStatus = UserStatus.DELAY;
                     System.out.println(("Hunt Day! Need to gather food"));
                     totalMilesTravelled = totalMilesTravelled - MILES_TRAVELED_PER_DAY;
@@ -174,7 +170,7 @@ public class oregonTrailMyAdditions {
 
 
     public static void main (String[]args){
-            oregonTrailMyAdditions game = new oregonTrailMyAdditions();
+            OregonTrailMyAdditions game = new OregonTrailMyAdditions();
 
             game.play();
             System.out.println("*************************************");
