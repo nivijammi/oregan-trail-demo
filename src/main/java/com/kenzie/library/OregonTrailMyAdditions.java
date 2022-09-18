@@ -21,7 +21,7 @@ public class OregonTrailMyAdditions {
      * The eastern starting point of the Oregon Trail was in Independence, Missouri,
      * and it ended in Oregon’s Willamette Valley.
      */
-    public final static int TOTAL_MILES = 2100;//Total miles required to reach Oregon
+    public final static int TOTAL_MILES = 1600;//Total miles required to reach Oregon
     /**
      * It was critical for travelers to leave in April or May if they hoped to reach Oregon before the winter snows began.
      * Leaving in late spring also ensured there’d be ample grass along the way to feed livestock.
@@ -121,13 +121,21 @@ public class OregonTrailMyAdditions {
             switch (sumOfDice) {
                 case IS_SICK: // sum 4: lose travel days
                     gameStatus = UserStatus.DELAY;
-                    TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED - (MILES_TRAVELED_PER_DAY *2); //delay by 2 days
+                    if(TOTAL_MILES_TRAVELLED >= 30) {
+                        TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED - (MILES_TRAVELED_PER_DAY * 2); //delay by 2 days
+                    }else{
+                        TOTAL_MILES_TRAVELLED = 0;
+                    }
                     System.out.println("You rolled 4! Delay your journey by 2 days because of sickness!");
                     break;
 
                 case HUNT_DAY: // sum 7:
                     gameStatus = UserStatus.DELAY;
-                    TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED - MILES_TRAVELED_PER_DAY;
+                    if(TOTAL_MILES_TRAVELLED >= 15) {
+                        TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED - MILES_TRAVELED_PER_DAY;
+                    }else{
+                        TOTAL_MILES_TRAVELLED = 0;
+                    }
                     FOOD_STOCK = FOOD_STOCK + foodRationPerDay;
                     System.out.println(("You rolled 7! Hunt Day! Need to gather food"));
                     System.out.println(("Delay your journey by a day but added stock."));
@@ -153,7 +161,7 @@ public class OregonTrailMyAdditions {
 
                 default: // did not win or lose
                     gameStatus = UserStatus.PLAY; // game is not over
-                    System.out.println("You can continue! And miles to go before i sleep!");
+                    System.out.println("And miles to go before i sleep!");
                     TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED + MILES_TRAVELED_PER_DAY;
                     MILES_REMAINING = TOTAL_MILES - TOTAL_MILES_TRAVELLED;
                     currentPoints = currentPoints + sumOfDice; // remember the point
