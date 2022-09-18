@@ -29,9 +29,10 @@ public class Main {
     /***************** Assessment - Object Oriented Design ************************/
 
     /**
-     Purpose: Use a random number generator on hunting days to "roll" and select the wildlife available or that day.
-     modify the food store of Hunter class.
-     summary of modifications made to the food storage of Hunter class
+     This modification defines and uses a Wildlife enum File.
+     A randomly generated number will allow the player to select the wildlife available on that day.
+     and based on the game hunted will modify the food store of Hunter.
+     There is a summary of the food store before and after the Hunt.
      Ex: If BISON is available, the Hunter class gets to add +10 to the food hunted that day.
      If RABBIT is available, add +4 to the food hunted that day.
     */
@@ -46,7 +47,8 @@ public class Main {
         gameHuntUnits.put(Wildlife.DEER, 5);
         gameHuntUnits.put(Wildlife.RABBIT, 4);
         gameHuntUnits.put(Wildlife.SQUIRREL, 2);
-        System.out.println("HuntMap: " + gameHuntUnits);
+        System.out.println("Game available for Hunt and their units: ");
+        System.out.println(gameHuntUnits);
 
         // creating a hunter object
         Hunter hunter = new Hunter();
@@ -63,43 +65,50 @@ public class Main {
         int huntUnits = 0;
         int stockBeforeHunt = hunter.getFood();
         int stockAfterHunt = 0;
+        Wildlife game;
 
+        // the roll of dice will tell what game is available to the Hunter
         switch (rollDice()) {
             case 1:
-                huntUnits = gameHuntUnits.get(Wildlife.BEAR);
-                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt);
+                game = Wildlife.BEAR;
+                huntUnits = gameHuntUnits.get(game);
+                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt,game);
                 break;
             case 2:
+                game = Wildlife.BISON;
                 huntUnits = gameHuntUnits.get(Wildlife.BISON);
-                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt);
+                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt,game);
                 break;
             case 3:
+                game = Wildlife.DEER;
                 huntUnits = gameHuntUnits.get(Wildlife.DEER);
-                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt);
+                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt,game);
                 break;
             case 4:
+                game = Wildlife.RABBIT;
                 huntUnits = gameHuntUnits.get(Wildlife.RABBIT);
-                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt);
+                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt,game);
                 break;
             case 5:
+                game = Wildlife.SQUIRREL;
                 huntUnits = gameHuntUnits.get(Wildlife.SQUIRREL);
-                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt);
+                displayHuntSummary(stockBeforeHunt, huntUnits, hunter, stockAfterHunt,game);
                 break;
             default:
-                System.out.println("Food stock before the hunt: "+ stockBeforeHunt);
+                System.out.println("Hunter's food stock before the hunt: "+ stockBeforeHunt + " units.");
                 System.out.println("No game! It was an unlucky hunt!");
                 stockAfterHunt = stockBeforeHunt + huntUnits;
-                System.out.println("Food Stock after the hunt: " + stockAfterHunt);
+                System.out.println("Hunter's food stock remains " + stockAfterHunt + " units after the hunt.");
                 break;
         }
     }
 
-    private static void displayHuntSummary(int stockBeforeHunt, int huntUnits, Hunter hunter, int stockAfterHunt) {
-        System.out.println("Food stock before the hunt: "+ stockBeforeHunt);
-        System.out.println("Food hunted on hunt day: " + huntUnits + " units!");
+    private static void displayHuntSummary(int stockBeforeHunt, int huntUnits, Hunter hunter, int stockAfterHunt, Wildlife game) {
+        System.out.println("Hunter's food stock before the hunt: "+ stockBeforeHunt);
+        System.out.println(game +" hunted on hunt day added " + huntUnits + " units.");
         hunter.setFood(stockBeforeHunt + huntUnits);
         stockAfterHunt = stockBeforeHunt + huntUnits;
-        System.out.println("Food Stock after the hunt: " + stockAfterHunt);
+        System.out.println("Hunter's food stock after the hunt " + stockAfterHunt + " units.");
     }
 
 

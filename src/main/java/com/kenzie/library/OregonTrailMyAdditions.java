@@ -80,8 +80,8 @@ public class OregonTrailMyAdditions {
     }
 
     // constants that represent common rolls of the dice
-    private final static int IS_SICK = 4; // stop for 2 days
-    private final static int HUNT_DAY = 7; //give food
+    private final static int IS_SICK = 4; // delay for 2 days
+    private final static int HUNT_DAY = 7; //delay a day but add food
     private final static int REACHED_A_MILESTONE = 8; //add double daily miles & stock food
     private final static int DISASTER = 11;//end game
     private final static int REACHED_SANTA_FE_TRAIL = 12; // won
@@ -125,6 +125,7 @@ public class OregonTrailMyAdditions {
                     }else{
                         TOTAL_MILES_TRAVELLED = 0;
                     }
+                    MILES_REMAINING = TOTAL_MILES - TOTAL_MILES_TRAVELLED;
                     System.out.println("You rolled 4! Delay your journey by 2 days because of sickness!");
                     break;
 
@@ -135,14 +136,16 @@ public class OregonTrailMyAdditions {
                     }else{
                         TOTAL_MILES_TRAVELLED = 0;
                     }
+                    MILES_REMAINING = TOTAL_MILES - TOTAL_MILES_TRAVELLED;
                     FOOD_STOCK = FOOD_STOCK + foodRationPerDay;
                     System.out.println(("You rolled 7! Hunt Day! Need to gather food"));
-                    System.out.println(("Delay your journey by a day but added stock."));
+                    System.out.println(("Delay your journey by a day but add stock."));
                     break;
 
                 case REACHED_A_MILESTONE: // sum 8: added vigor - travelled twice & restocked
                     gameStatus = GameStatus.PLAY;
                     TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED + (MILES_TRAVELED_PER_DAY *2);
+                    MILES_REMAINING = TOTAL_MILES - TOTAL_MILES_TRAVELLED;
                     FOOD_STOCK = FOOD_STOCK + foodRationPerDay * 2;
                     System.out.println(("You rolled 8! Hurray! Reached a mile stone."));
                     System.out.println("Add twice the stock and journey twice the miles");
@@ -151,16 +154,18 @@ public class OregonTrailMyAdditions {
                 case DISASTER: // lose with 11
                     gameStatus = GameStatus.LOST;
                     System.out.println("You rolled 11! Disaster hit!");
+                    MILES_REMAINING = TOTAL_MILES - TOTAL_MILES_TRAVELLED;
                     break;
 
                 case REACHED_SANTA_FE_TRAIL: // sum 12: win
                     gameStatus = GameStatus.WON;
-                    System.out.println("You rolled 12! Finally reached Santa Fe Trail");
+                    System.out.println("You rolled 12! You have finally reached Santa Fe Trail.");
+                    MILES_REMAINING = 0;
                     break;
 
                 default: // did not win or lose
                     gameStatus = GameStatus.PLAY; // game is not over
-                    System.out.println("And miles to go before i sleep!");
+                    System.out.println("PHEW! You are safe, continue your travel!");
                     TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED + MILES_TRAVELED_PER_DAY;
                     MILES_REMAINING = TOTAL_MILES - TOTAL_MILES_TRAVELLED;
                     currentPoints = currentPoints + sumOfDice; // remember the point
@@ -190,18 +195,17 @@ public class OregonTrailMyAdditions {
 
     private static void displayGameStatus(GameStatus gameStatus) {
 
-
         System.out.println("****************OREGON TRAIL TRAVEL SUMMARY****************");
         // display won or lost message
         if (gameStatus == GameStatus.WON) {
             System.out.println("Your wagon made it to Oregon. Congratulations!");
         }else if(gameStatus == GameStatus.PLAY){
-            System.out.println("You have survived to travel another day!");
+            //System.out.println("You have survived to travel another day!");
         } else {
-            System.out.println("Time has run out!");
+            System.out.println("Sorry! Your time has run out.");
         } // end method play
         System.out.println("The wagon traveled: " + TOTAL_MILES_TRAVELLED + " miles."); //miles travelled
-        System.out.println("You needed to travel a total of " + MILES_REMAINING + " to make it to Oregon");//total miles
+        System.out.println("You needed to travel a total of " + MILES_REMAINING + " miles to make it to Oregon.");//total miles
         System.out.println("Remaining food stock: " + FOOD_STOCK);
         System.out.println("**************************************************************");
 
