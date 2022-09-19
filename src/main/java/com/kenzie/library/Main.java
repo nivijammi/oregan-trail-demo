@@ -12,8 +12,8 @@ public class Main {
     /*** Declare Statics and Constants Here ***/
     //static variables that will be used to track progress:
 
-    public static int daysTravelled;
-    public static int milesTravelled;
+    public static int daysTravelled = 0;
+    public static int milesTravelled = 0;
 
     public static final int TOTAL_MILES = 1600; //Total miles required to reach Oregon
     public static final int MILES_PER_DAY = 20;//Total miles travelled per day
