@@ -36,7 +36,9 @@ public class Main {
      * If RABBIT is available, add +4 to the food hunted that day.
      */
     public static int HUNT_UNITS = 0;
+    public static Wildlife game;
     public static Random randomNumbers = new Random();
+
 
     public static void gameHunt() {
         // Creating an EnumMap of the Size enum
@@ -63,7 +65,6 @@ public class Main {
 
     public static void hunt(Hunter hunter, EnumMap<Wildlife, Integer> gameHuntUnits) {
         int stockBeforeHunt = hunter.getFood();
-        Wildlife game;
 
         // the roll of dice will tell what game is available to the Hunter
         switch (rollDice()) {
@@ -131,6 +132,10 @@ public class Main {
 
         //This will only run through if all of the required elements for Part 2 are coded
         OregonTrailPartTwo();
+
+        /****************** My Addition **************************/
+        OregonTrailMyAdditions game = new OregonTrailMyAdditions();
+        game.play();
 
     }
 

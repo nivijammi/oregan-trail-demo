@@ -104,7 +104,8 @@ public class OregonTrailMyAdditions {
         int currentPoints = 0; // start point - no win or loss on first roll
 
         GameStatus gameStatus = GameStatus.PLAY; // can contain PLAY, DELAY, WON or LOST
-
+        System.out.println("                                                       ");
+        System.out.println("^^^^^^^^^^^^^   OREGON TRAIL MY ADDITION    ^^^^^^^^^^^^");
         // while game is not complete
         while (gameStatus == GameStatus.PLAY && FOOD_STOCK >= foodRationPerDay) { // not WON or LOST
 
@@ -116,6 +117,7 @@ public class OregonTrailMyAdditions {
             daysTraveled++;
 
             // determine game status and point based on the roll
+
 
             switch (sumOfDice) {
                 case IS_SICK: // sum 4: lose travel days
@@ -194,8 +196,8 @@ public class OregonTrailMyAdditions {
     }
 
     private static void displayGameStatus(GameStatus gameStatus) {
-
-        System.out.println("****************OREGON TRAIL TRAVEL SUMMARY****************");
+        //Every roll of dice is a day.
+        System.out.println("************   TODAY'S TRAVEL SUMMARY  *************");
         // display won or lost message
         if (gameStatus == GameStatus.WON) {
             System.out.println("Your wagon made it to Oregon. Congratulations!");
@@ -207,16 +209,9 @@ public class OregonTrailMyAdditions {
         System.out.println("The wagon traveled: " + TOTAL_MILES_TRAVELLED + " miles."); //miles travelled
         System.out.println("You needed to travel a total of " + MILES_REMAINING + " miles to make it to Oregon.");//total miles
         System.out.println("Remaining food stock: " + FOOD_STOCK);
-        System.out.println("**************************************************************");
-
-        System.out.println("**************************************************************");
+        System.out.println("=============================================================");
+        System.out.println("==============================================================");
 
     }
 
-
-    public static void main (String[]args){
-            OregonTrailMyAdditions game = new OregonTrailMyAdditions();
-            game.play();
-
-        }
     }
