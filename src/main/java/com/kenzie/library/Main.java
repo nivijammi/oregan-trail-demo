@@ -20,7 +20,6 @@ public class Main {
     public static final int FOOD_EXCHANGE = 2; //How much food the travelers give each other each time
     public static final int MAX_DAYS = 100; //Maximum number of days to reach Oregon or bust
     public static final int HUNT_DAYS = 4; //this represents how often the party will stop to hunt, 4 means once every 4 days
-
     public static final int WAGON_SIZE = 12;//Total capacity -- choose either 4, 8 or 12
     public static final int NUM_TRAVELERS = 8;
     public static final int NUM_HUNTERS = 2;
@@ -42,9 +41,9 @@ public class Main {
     public static void gameHunt() {
         // Creating an EnumMap of the Size enum
         EnumMap<Wildlife, Integer> gameHuntUnits = new EnumMap<>(Wildlife.class);
-        gameHuntUnits.put(Wildlife.BEAR, 10);
-        gameHuntUnits.put(Wildlife.BISON, 10);
-        gameHuntUnits.put(Wildlife.DEER, 5);
+        gameHuntUnits.put(Wildlife.BEAR, 24);
+        gameHuntUnits.put(Wildlife.BISON, 24);
+        gameHuntUnits.put(Wildlife.DEER, 10);
         gameHuntUnits.put(Wildlife.RABBIT, 4);
         gameHuntUnits.put(Wildlife.SQUIRREL, 2);
         System.out.println("====================================================");
@@ -58,13 +57,12 @@ public class Main {
     }
 
     public static int rollDice() {
-        int dieValue = randomNumbers.nextInt(6); // first die roll
+        int dieValue = randomNumbers.nextInt(6);
         return dieValue;
     }
 
     public static void hunt(Hunter hunter, EnumMap<Wildlife, Integer> gameHuntUnits) {
         int stockBeforeHunt = hunter.getFood();
-        int stockAfterHunt = 0;
         Wildlife game;
 
         // the roll of dice will tell what game is available to the Hunter
@@ -72,45 +70,55 @@ public class Main {
             case 1:
                 game = Wildlife.BEAR;
                 HUNT_UNITS = gameHuntUnits.get(game);
-                displayHuntSummary(stockBeforeHunt, HUNT_UNITS, hunter, stockAfterHunt, game);
+                displayHuntSummary(stockBeforeHunt, hunter,game);
                 break;
             case 2:
                 game = Wildlife.BISON;
                 HUNT_UNITS = gameHuntUnits.get(game);
-                displayHuntSummary(stockBeforeHunt, HUNT_UNITS, hunter, stockAfterHunt, game);
+                displayHuntSummary(stockBeforeHunt, hunter,game);
                 break;
             case 3:
                 game = Wildlife.DEER;
                 HUNT_UNITS = gameHuntUnits.get(game);
-                displayHuntSummary(stockBeforeHunt, HUNT_UNITS, hunter, stockAfterHunt, game);
+                displayHuntSummary(stockBeforeHunt, hunter, game);
                 break;
             case 4:
                 game = Wildlife.RABBIT;
                 HUNT_UNITS = gameHuntUnits.get(game);
-                displayHuntSummary(stockBeforeHunt, HUNT_UNITS, hunter, stockAfterHunt, game);
+                displayHuntSummary(stockBeforeHunt, hunter, game);
                 break;
             case 5:
                 game = Wildlife.SQUIRREL;
                 HUNT_UNITS = gameHuntUnits.get(game);
-                displayHuntSummary(stockBeforeHunt, HUNT_UNITS, hunter, stockAfterHunt, game);
+                displayHuntSummary(stockBeforeHunt, hunter,game);
                 break;
             default:
                 System.out.println("Hunter's food stock before the hunt: " + stockBeforeHunt + " units.");
                 System.out.println("No game! It was an unlucky hunt!");
-                HUNT_UNITS = 0;
-                stockAfterHunt = stockBeforeHunt + HUNT_UNITS;
-                System.out.println("Hunter's food stock remains " + stockAfterHunt + " units after the hunt.");
+                System.out.println("Hunter's food stock remains " + stockBeforeHunt + " units after Hunting Day.");
                 System.out.println("======================================================");
                 break;
         }
     }
 
-    public static void displayHuntSummary(int stockBeforeHunt, int huntUnits, Hunter hunter, int stockAfterHunt, Wildlife game) {
+    public static void displayHuntSummary(int stockBeforeHunt, Hunter hunter, Wildlife game) {
+
         System.out.println("Hunter's food stock before the hunt: " + stockBeforeHunt);
         System.out.println(game + " hunted on hunt day added " + HUNT_UNITS + " units.");
         hunter.setFood(stockBeforeHunt + HUNT_UNITS);
-        stockAfterHunt = stockBeforeHunt + HUNT_UNITS;
+        int stockAfterHunt = stockBeforeHunt + HUNT_UNITS;
         System.out.println("Hunter's food stock after the hunt " + stockAfterHunt + " units.");
+        int foodToBeShared = 0;
+        int foodAfterHunterShare = stockAfterHunt-2; // 2 units needed for hunter's isHealthy state
+
+        if(stockAfterHunt > 2 && stockAfterHunt > WAGON_SIZE){
+            foodToBeShared = (foodAfterHunterShare / WAGON_SIZE) ;
+            System.out.println("Hunter can share " + foodToBeShared + " units with each traveller.");
+        }else if((stockAfterHunt > 2 && stockAfterHunt <= WAGON_SIZE)){
+            System.out.println("Hunter can share 1 unit with " + foodAfterHunterShare +" travellers.");
+        }else {
+            System.out.println("Sorry! Didn't collect enough to share.");
+        }
         System.out.println("=====================================================");
     }
 
