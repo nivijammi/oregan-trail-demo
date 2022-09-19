@@ -32,6 +32,7 @@ public class Main {
      * A randomly generated number will allow the player to select the wildlife available on that day.
      * and based on the game hunted will modify the food store of Hunter.
      * There is a summary of the food store before and after the Hunt.
+     * and how many food units the hunter can share with the other travelers.
      * Ex: If BISON is available, the Hunter class gets to add +10 to the food hunted that day.
      * If RABBIT is available, add +4 to the food hunted that day.
      */
