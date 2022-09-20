@@ -104,8 +104,9 @@ public class OregonTrailMyAdditions {
         int currentPoints = 0; // start point - no win or loss on first roll
 
         GameStatus gameStatus = GameStatus.PLAY; // can contain PLAY, DELAY, WON or LOST
-        System.out.println("                                                       ");
+        System.out.println("========================================================");
         System.out.println("^^^^^^^^^^^^^   OREGON TRAIL MY ADDITION    ^^^^^^^^^^^^");
+        System.out.println("========================================================");
         // while game is not complete
         while (gameStatus == GameStatus.PLAY && FOOD_STOCK >= foodRationPerDay) { // not WON or LOST
 
@@ -134,7 +135,7 @@ public class OregonTrailMyAdditions {
                 case HUNT_DAY: // sum 7:
                     gameStatus = GameStatus.DELAY;
                     if(TOTAL_MILES_TRAVELLED >= 15) {
-                        TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED - MILES_TRAVELED_PER_DAY;
+                        TOTAL_MILES_TRAVELLED = TOTAL_MILES_TRAVELLED - 0;
                     }else{
                         TOTAL_MILES_TRAVELLED = 0;
                     }
@@ -206,7 +207,7 @@ public class OregonTrailMyAdditions {
         } else {
             System.out.println("Sorry! Your time has run out.");
         } // end method play
-        System.out.println("The wagon traveled: " + TOTAL_MILES_TRAVELLED + " miles."); //miles travelled
+        System.out.println("Total miles traveled till date: " + TOTAL_MILES_TRAVELLED + " miles."); //miles travelled
         System.out.println("You needed to travel a total of " + MILES_REMAINING + " miles to make it to Oregon.");//total miles
         System.out.println("Remaining food stock: " + FOOD_STOCK);
         System.out.println("=============================================================");

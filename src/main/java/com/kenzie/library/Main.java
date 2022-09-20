@@ -30,11 +30,12 @@ public class Main {
     /**
      * This modification defines and uses a Wildlife enum File.
      * A randomly generated number will allow the player to select the wildlife available on that day.
-     * and based on the game hunted will modify the food store of Hunter.
+     * The game and the units are displayed by enumMap.Based on the game hunted the food store of Hunter will modify.
      * There is a summary of the food store before and after the Hunt.
      * and how many food units the hunter can share with the other travelers.
-     * Ex: If BISON is available, the Hunter class gets to add +10 to the food hunted that day.
-     * If RABBIT is available, add +4 to the food hunted that day.
+     * Ex: If BISON is available, the Hunter class gets to add 24 to his food stock.(beforeHuntStock + 24)
+     * He needs 2 units to maintain his isHealthy state and rest units can be distributed to the travellers.
+     * According to the units available,the distribution is made or not made to set number of travellers.
      */
     public static int HUNT_UNITS = 0;
     public static Wildlife game;
@@ -111,7 +112,7 @@ public class Main {
         int stockAfterHunt = stockBeforeHunt + HUNT_UNITS;
         System.out.println("Hunter's food stock after the hunt " + stockAfterHunt + " units.");
         int foodToBeShared = 0;
-        int foodAfterHunterShare = stockAfterHunt-2; // 2 units needed for hunter's isHealthy state
+        int foodAfterHunterShare = stockAfterHunt-2; // least 2 units needed for hunter's isHealthy state
 
         if(stockAfterHunt > 2 && stockAfterHunt > WAGON_SIZE){
             foodToBeShared = (foodAfterHunterShare / WAGON_SIZE) ;
