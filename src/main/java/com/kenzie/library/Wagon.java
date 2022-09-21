@@ -96,18 +96,18 @@ public class Wagon {
             Traveler mrTraveler = new Traveler("Traveler-"+i);
             join(mrTraveler);
         }
-        //System.out.println(passengers);
+        System.out.println(passengers);
 
         for (int i=0; i<numHunters; i++) {
             Hunter mrHunter = new Hunter("Hunter-"+i);
             join(mrHunter);
         }
-        //System.out.println(passengers);
+        System.out.println(passengers);
 
         for (int i=0; i<numDoctors; i++) {
             Doctor mrDoctor = new Doctor("Doctor-"+i);
             join(mrDoctor);
         }
-        //System.out.println(passengers);
+        System.out.println(passengers);
     }
 }

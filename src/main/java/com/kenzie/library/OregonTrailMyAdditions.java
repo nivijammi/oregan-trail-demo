@@ -37,47 +37,7 @@ public class OregonTrailMyAdditions {
     public static int TOTAL_MILES_TRAVELLED = 0;
     public static int MILES_REMAINING;
 
-    //getters and setters
 
-    public Random getRandomNumbers() {
-        return randomNumbers;
-    }
-
-    public int getFoodStock() {
-        return FOOD_STOCK;
-    }
-
-    public void setFoodStock(int foodStock) {
-        this.FOOD_STOCK = foodStock;
-    }
-
-    public int getFoodRationPerDay() {
-        return foodRationPerDay;
-    }
-
-    public int getTotalMilesTravelled() {
-        return TOTAL_MILES_TRAVELLED;
-    }
-
-    public void setTotalMilesTravelled(int totalMilesTravelled) {
-        this.TOTAL_MILES_TRAVELLED = totalMilesTravelled;
-    }
-
-    public int getMilesRemainingToOregon() {
-        return MILES_REMAINING;
-    }
-
-    public void setMilesRemainingToOregon(int milesRemainingToOregon) {
-        this.MILES_REMAINING = milesRemainingToOregon;
-    }
-
-    // enumeration with constants that represent the game status
-    private enum GameStatus {
-        PLAY,
-        DELAY,
-        WON,
-        LOST
-    }
 
     // constants that represent common rolls of the dice
     private final static int IS_SICK = 4; // delay for 2 days
@@ -85,6 +45,8 @@ public class OregonTrailMyAdditions {
     private final static int REACHED_A_MILESTONE = 8; //add double daily miles & stock food
     private final static int DISASTER = 11;//end game
     private final static int REACHED_SANTA_FE_TRAIL = 12; // won
+
+    public GameStatus gameStatus;
 
     public int rollDice () {
 
@@ -215,4 +177,5 @@ public class OregonTrailMyAdditions {
 
     }
 
-    }
+
+}

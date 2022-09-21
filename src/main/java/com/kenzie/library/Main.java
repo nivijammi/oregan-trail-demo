@@ -136,8 +136,8 @@ public class Main {
         OregonTrailPartTwo();
 
         /****************** My Addition **************************/
-        OregonTrailMyAdditions game = new OregonTrailMyAdditions();
-        game.play();
+        //OregonTrailMyAdditions game = new OregonTrailMyAdditions();
+        //game.play();
 
     }
 
